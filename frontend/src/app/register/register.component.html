@@ -1,0 +1,59 @@
+<div class="container">
+    <div class="card o-hidden border-0 shadow-lg my-5">
+        <div class="card-body p-0">
+            <!-- Nested Row within Card Body -->
+            <div class="row">
+                <div class="col-lg-5 d-none d-lg-block bg-register-image"></div>
+                <div class="col-lg-7">
+                    <div class="p-5">
+                        <div class="text-center">
+                            <h1 class="h4 text-gray-900 mb-4">Create an Account!</h1>
+                        </div>
+                        <form class="user" #userForm = "ngForm" (ngSubmit) = "register(userForm.value)" novalidate>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="text" name="fname" [ngClass]="(errors.fname != '' && errors.fname != 'This field is required') ? 'form-control form-control-user is-invalid' : 'form-control form-control-user'" ngModel (ngModelChange)="validate($event, 'fname', '')" id="exampleFirstName" placeholder="First Name">
+                                    <div class="invalid-feedback" *ngIf="errors.fname != '' && errors.fname != 'This field is required'">
+                                        {{ errors.fname }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="text" name="lname" [ngClass]="(errors.lname != '' && errors.lname != 'This field is required') ? 'form-control form-control-user is-invalid' : 'form-control form-control-user'" ngModel (ngModelChange)="validate($event, 'lname', '')" id="exampleLastName" placeholder="Last Name">
+                                    <div class="invalid-feedback" *ngIf="errors.lname != '' && errors.lname != 'This field is required'">
+                                    {{ errors.lname }}
+                                </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <input type="email" name="email" [ngClass]="(errors.email != '' && errors.email != 'This field is required') ? 'form-control form-control-user is-invalid' : 'form-control form-control-user'" ngModel (ngModelChange)="validate($event, 'email', '')" id="exampleInputEmail" placeholder="Email Address">
+                                <div class="invalid-feedback" *ngIf="errors.email != '' && errors.email != 'This field is required'">
+                                    {{ errors.email }}
+                                </div>
+                            </div>
+                            <div class="form-group row">
+                                <div class="col-sm-6 mb-3 mb-sm-0">
+                                    <input type="password" name="password" [ngClass]="(errors.password != '' && errors.password != 'This field is required') ? 'form-control form-control-user is-invalid' : 'form-control form-control-user'" ngModel (ngModelChange)="validate($event, 'password', '')" id="exampleInputPassword" placeholder="Password">
+                                    <div class="invalid-feedback" *ngIf="errors.password != '' && errors.password != 'This field is required'">
+                                        {{ errors.password }}
+                                    </div>
+                                </div>
+                                <div class="col-sm-6">
+                                    <input type="password" name="confPassword" [ngClass]="(errors.confPassword != '' && errors.confPassword != 'This field is required') ? 'form-control form-control-user is-invalid' : 'form-control form-control-user'" ngModel (ngModelChange)="validate($event, 'confPassword', userForm.value.password)" id="exampleRepeatPassword" placeholder="Confirm Password">
+                                    <div class="invalid-feedback" *ngIf="errors.confPassword != '' && errors.confPassword != 'This field is required'">
+                                        {{ errors.confPassword }}
+                                    </div>
+                                </div>
+                            </div>
+                            <input type="submit" class="btn btn-primary btn-user btn-block"  value="Register" [disabled]="isValid == false"/>
+                        </form>
+                        <hr>
+                        <div class="text-center">
+                            <a class="small" [routerLink]="['/login']" >Already have an account? Login!</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.9)" size = "medium" color = "#fff" type = "timer" [fullScreen] = "true"><p style="color: white" > Loading... </p></ngx-spinner>
